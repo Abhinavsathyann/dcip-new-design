@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform, HTMLMotionProps } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useTransform, HTMLMotionProps, useSpring, useMotionValue, useInView, useAnimation } from "framer-motion";
 import { clsx } from "clsx";
 
 // 1. Reveal Text (Word by Word)
@@ -48,7 +48,6 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
     <motion.span
       style={{ display: "inline-flex", flexWrap: "wrap" }}
       variants={container}
-      // If priority is true, we start visible to prevent flash of invisible content or stuck states
       initial={priority ? "visible" : "hidden"}
       whileInView={priority ? undefined : "visible"}
       animate={priority ? "visible" : undefined}
@@ -64,7 +63,40 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
   );
 };
 
-// 2. Parallax Image Container
+// 2. Mask Text Reveal (Editorial Style - Upward Reveal)
+export const MaskText: React.FC<{ text: string | string[]; className?: string; delay?: number }> = ({ text, className, delay = 0 }) => {
+  const body = Array.isArray(text) ? text : [text];
+  
+  const animation = {
+    initial: { y: "100%" },
+    enter: (i: number) => ({
+      y: "0",
+      transition: { duration: 0.75, ease: [0.33, 1, 0.68, 1], delay: delay + (i * 0.1) }
+    })
+  };
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+  return (
+    <div ref={ref} className={clsx(className)}>
+      {body.map((phrase, index) => (
+        <div key={index} className="overflow-hidden">
+          <motion.div
+            custom={index}
+            variants={animation}
+            initial="initial"
+            animate={isInView ? "enter" : ""}
+          >
+            {phrase}
+          </motion.div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// 3. Parallax Image Container
 interface ParallaxProps {
   children: React.ReactNode;
   offset?: number;
@@ -89,7 +121,7 @@ export const Parallax: React.FC<ParallaxProps> = ({ children, offset = 50, class
   );
 };
 
-// 3. Fade In Up (General Purpose)
+// 4. Fade In Up (General Purpose)
 interface FadeInProps extends HTMLMotionProps<"div"> {
   delay?: number;
   priority?: boolean;
@@ -104,7 +136,6 @@ export const FadeIn: React.FC<FadeInProps> = ({
 }) => {
   return (
     <motion.div
-      // If priority is true, we render visible immediately
       initial={priority ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       whileInView={priority ? undefined : { opacity: 1, y: 0 }}
       animate={priority ? { opacity: 1, y: 0 } : undefined}
@@ -118,7 +149,7 @@ export const FadeIn: React.FC<FadeInProps> = ({
   );
 };
 
-// 4. Magnetic Button Wrapper
+// 5. Magnetic Button Wrapper
 export const Magnetic: React.FC<{ children: React.ReactElement }> = ({ children }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
@@ -147,6 +178,106 @@ export const Magnetic: React.FC<{ children: React.ReactElement }> = ({ children 
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
     >
       {children}
+    </motion.div>
+  );
+};
+
+// 6. Animated Counter
+export const Counter: React.FC<{ value: number; duration?: number; className?: string }> = ({ value, duration = 2, className }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { damping: 50, stiffness: 100 });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [isInView, value, motionValue]);
+
+  useEffect(() => {
+    springValue.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = Intl.NumberFormat("en-US").format(Math.floor(latest));
+      }
+    });
+  }, [springValue]);
+
+  return <span ref={ref} className={className}>0</span>;
+};
+
+// 7. 3D Tilt Card
+export const TiltCard: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className={clsx("relative", className)}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// 8. Stagger Container
+export const StaggerContainer: React.FC<{ children: React.ReactNode; className?: string; delay?: number }> = ({ children, className, delay = 0 }) => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: delay,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } },
+  };
+
+  return (
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-10%" }}
+      className={className}
+    >
+      {React.Children.map(children, (child) => (
+        <motion.div variants={item}>{child}</motion.div>
+      ))}
     </motion.div>
   );
 };

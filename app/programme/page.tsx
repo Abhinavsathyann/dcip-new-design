@@ -2,25 +2,63 @@
 
 import React from "react";
 import { Container } from "@/components/layout/Container";
-import { FadeIn, TextReveal } from "@/components/ui/Motion";
+import { FadeIn, TextReveal, StaggerContainer } from "@/components/ui/Motion";
 import { motion } from "framer-motion";
-import { Calendar, Users, FileText, CheckCircle2 } from "lucide-react";
+import { Calendar, Users, FileText, CheckCircle2, ChevronRight } from "lucide-react";
 
 export default function ProgrammePage() {
   return (
     <main className="pt-32 pb-20 bg-slate-50">
       <Container>
-        <div className="max-w-3xl mx-auto text-center mb-24">
+        <div className="max-w-4xl mx-auto text-center mb-24">
           <h1 className="text-5xl md:text-7xl font-serif text-slate-900 mb-8">
-            <TextReveal text="Structure & Eligibility" className="justify-center" />
+            <TextReveal text="The Roadmap to Impact" className="justify-center" />
           </h1>
-          <p className="text-xl text-slate-600">
-            A rigorous 4-month engagement designed to test your mettle and expand your horizons.
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            A rigorous 4-month engagement designed to test your mettle, expand your horizons, and deliver tangible results for the district.
           </p>
         </div>
 
-        {/* Interactive Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-32">
+        {/* Timeline Visual */}
+        <div className="relative mb-32 max-w-5xl mx-auto">
+          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2" />
+          
+          <div className="space-y-12 md:space-y-24">
+            <TimelineItem 
+              step="01" 
+              title="Induction & Orientation" 
+              desc="Intensive 3-day workshop covering district administration structure, office procedures, and project management basics."
+              side="left"
+            />
+            <TimelineItem 
+              step="02" 
+              title="Department Allocation" 
+              desc="Interns are assigned to specific departments (Health, Education, Planning) based on their background and district needs."
+              side="right"
+            />
+            <TimelineItem 
+              step="03" 
+              title="Field Immersion" 
+              desc="The core phase. Visiting sites, conducting surveys, interacting with beneficiaries, and collecting primary data."
+              side="left"
+            />
+            <TimelineItem 
+              step="04" 
+              title="Analysis & Reporting" 
+              desc="Synthesizing field data into actionable policy notes and presentation to the District Collector."
+              side="right"
+            />
+            <TimelineItem 
+              step="05" 
+              title="Graduation" 
+              desc="Presentation of final reports, certification ceremony, and alumni induction."
+              side="left"
+            />
+          </div>
+        </div>
+
+        {/* Quick Facts Grid */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-32">
            <InfoCard 
              icon={<Calendar className="w-6 h-6" />}
              title="Duration"
@@ -45,39 +83,29 @@ export default function ProgrammePage() {
              value="Official Certificate"
              desc="Upon successful completion, interns receive a certificate signed by the District Collector."
            />
-        </div>
+        </StaggerContainer>
 
-        {/* Eligibility Section - Dark Mode */}
-        <div className="rounded-3xl bg-slate-900 text-white p-8 md:p-16 overflow-hidden relative">
-           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
-             <div>
-                <h2 className="text-4xl font-serif mb-6">Who are we looking for?</h2>
-                <p className="text-slate-400 text-lg mb-8">
-                  We seek individuals who are not just looking for a certificate, but for an opportunity to serve.
-                </p>
-                <ul className="space-y-4">
-                  <EligibilityItem text="Graduates or Postgraduates in any discipline" />
-                  <EligibilityItem text="Strong command over English & Malayalam" />
-                  <EligibilityItem text="Proficiency in MS Office & Digital Tools" />
-                  <EligibilityItem text="Willingness to travel across the district" />
-                </ul>
-             </div>
-             <div className="flex items-center justify-center">
-                <div className="w-full aspect-square bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-2xl opacity-20 rotate-3 blur-3xl absolute" />
-                <div className="bg-white/10 backdrop-blur-md border border-white/10 p-8 rounded-2xl max-w-sm w-full relative z-10">
-                   <h3 className="text-xl font-bold mb-4">Selection Process</h3>
-                   <div className="space-y-6">
-                      <Step number="01" text="Online Application" />
-                      <Step number="02" text="Resume Screening" />
-                      <Step number="03" text="Personal Interview" />
-                      <Step number="04" text="Final Onboarding" />
-                   </div>
-                </div>
-             </div>
-           </div>
-        </div>
       </Container>
     </main>
+  );
+}
+
+function TimelineItem({ step, title, desc, side }: { step: string, title: string, desc: string, side: "left" | "right" }) {
+  return (
+    <div className={`relative flex items-center md:justify-between ${side === "right" ? "md:flex-row-reverse" : ""}`}>
+      {/* Dot */}
+      <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-4 border-indigo-600 rounded-full z-10" />
+      
+      {/* Content */}
+      <div className={`ml-16 md:ml-0 md:w-[45%] p-6 md:p-8 bg-white rounded-2xl shadow-sm border border-slate-100 hover:border-indigo-200 transition-colors`}>
+        <div className="text-4xl font-serif text-indigo-100 font-bold mb-4 absolute top-4 right-6 pointer-events-none">{step}</div>
+        <h3 className="text-2xl font-serif font-bold text-slate-900 mb-3">{title}</h3>
+        <p className="text-slate-600 leading-relaxed">{desc}</p>
+      </div>
+      
+      {/* Empty space for alignment */}
+      <div className="hidden md:block md:w-[45%]" />
+    </div>
   );
 }
 
@@ -94,24 +122,5 @@ function InfoCard({ icon, title, value, desc }: any) {
       <div className="text-2xl font-serif font-bold text-slate-900 mb-3">{value}</div>
       <p className="text-slate-600 text-sm leading-relaxed">{desc}</p>
     </motion.div>
-  );
-}
-
-function EligibilityItem({ text }: { text: string }) {
-  return (
-    <li className="flex items-center gap-3">
-      <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
-      <span className="text-slate-200">{text}</span>
-    </li>
-  );
-}
-
-function Step({ number, text }: { number: string, text: string }) {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="font-mono text-indigo-400 opacity-80">{number}</div>
-      <div className="h-px flex-1 bg-white/10" />
-      <div className="text-sm font-medium">{text}</div>
-    </div>
   );
 }

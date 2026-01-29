@@ -11,9 +11,10 @@ export const siteConfig = {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Programme", href: "/programme" },
-    { name: "News", href: "/news" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Impact", href: "/impact" },
+    { name: "Alumni", href: "/alumni" },
+    { name: "Blog", href: "/blog" },
+    { name: "FAQ", href: "/faq" },
   ]
 };
 
