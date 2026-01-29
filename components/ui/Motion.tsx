@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, HTMLMotionProps, useSpring, useMotionValue, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, HTMLMotionProps, useSpring, useMotionValue, useInView, Variants } from "framer-motion";
 import { clsx } from "clsx";
 
 // 1. Reveal Text (Word by Word)
@@ -15,7 +15,7 @@ interface TextRevealProps {
 export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay = 0, priority = false }) => {
   const words = text.split(" ");
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
@@ -23,7 +23,7 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
     }),
   };
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       y: 0,
@@ -67,11 +67,11 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
 export const MaskText: React.FC<{ text: string | string[]; className?: string; delay?: number }> = ({ text, className, delay = 0 }) => {
   const body = Array.isArray(text) ? text : [text];
   
-  const animation = {
+  const animation: Variants = {
     initial: { y: "100%" },
     enter: (i: number) => ({
       y: "0",
-      transition: { duration: 0.75, ease: [0.33, 1, 0.68, 1], delay: delay + (i * 0.1) }
+      transition: { duration: 0.75, ease: [0.33, 1, 0.68, 1] as [number, number, number, number], delay: delay + (i * 0.1) }
     })
   };
 
@@ -253,7 +253,7 @@ export const TiltCard: React.FC<{ children: React.ReactNode; className?: string 
 
 // 8. Stagger Container
 export const StaggerContainer: React.FC<{ children: React.ReactNode; className?: string; delay?: number }> = ({ children, className, delay = 0 }) => {
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -264,7 +264,7 @@ export const StaggerContainer: React.FC<{ children: React.ReactNode; className?:
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } },
   };
