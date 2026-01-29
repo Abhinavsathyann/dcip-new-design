@@ -9,12 +9,12 @@ export const siteConfig = {
   },
   navItems: [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
+    { name: "Mission", href: "/about" },
     { name: "Programme", href: "/programme" },
     { name: "Impact", href: "/impact" },
-    { name: "Alumni", href: "/alumni" },
-    { name: "Blog", href: "/blog" },
-    { name: "FAQ", href: "/faq" },
+    { name: "Participants", href: "/alumni" },
+    { name: "Updates", href: "/news" },
+    { name: "Information", href: "/faq" },
   ]
 };
 

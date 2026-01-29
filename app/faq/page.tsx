@@ -9,28 +9,24 @@ import Link from "next/link";
 
 const FAQS = [
   {
-    title: "Who is eligible to apply for DCIP?",
-    content: "Any graduate or postgraduate from a recognized university is eligible. We look for candidates with a strong academic record, proficiency in English and Malayalam, and a genuine passion for public service. Final year students awaiting results may also apply provisionally."
+    title: "What is the primary objective of DCIP?",
+    content: "The programme aims to provide youth with a platform to understand the workings of the District Administration, engage in public service, and contribute to development initiatives through research and field assistance."
   },
   {
-    title: "Is this a paid internship?",
-    content: "No, DCIP is a voluntary service-learning programme. It is non-stipendiary. However, interns gain invaluable experience, mentorship from senior IAS officers, and an official certification from the District Administration upon successful completion."
+    title: "Is there any financial remuneration?",
+    content: "No. DCIP is strictly a voluntary, non-stipendiary service internship. It is designed for individuals driven by a passion for public service and governance exposure."
   },
   {
-    title: "What is the duration of the programme?",
-    content: "The standard duration is 4 months. However, depending on project requirements and intern performance, this can be extended. Interns are expected to commit full-time during this period."
+    title: "What is the selection process?",
+    content: "Selection is conducted periodically based on requirements. It typically involves a screening of academic profiles followed by an interaction to assess the candidate's aptitude for public administration."
   },
   {
-    title: "Will I get a certificate?",
-    content: "Yes. Upon successful completion of the internship and submission of the final project report, you will receive a certificate of completion signed by the District Collector, Malappuram."
+    title: "What kind of certification is provided?",
+    content: "Upon successful completion of the tenure and submission of the required project reports, interns receive a Certificate of Service/Completion from the District Administration."
   },
   {
-    title: "Can I do this internship part-time or remotely?",
-    content: "No. DCIP is a full-time, on-site engagement. The nature of work involves field visits, office coordination, and real-time problem solving which cannot be done remotely."
-  },
-  {
-    title: "What kind of projects will I work on?",
-    content: "Projects vary based on current district priorities. Past projects have included tribal welfare surveys, waste management audits, digital literacy campaigns, disaster management planning, and tourism circuit mapping."
+    title: "Can this internship lead to a permanent job?",
+    content: "No. This internship does not guarantee or imply any form of permanent employment, absorption, or placement in the government service or associated agencies."
   }
 ];
 
@@ -38,8 +34,8 @@ export default function FAQPage() {
   return (
     <main className="bg-slate-50 min-h-screen">
       <PageHeader 
-        title="Frequently Asked Questions" 
-        subtitle="Everything you need to know about the District Collector's Internship Programme."
+        title="Information Center" 
+        subtitle="Common queries regarding the nature and scope of the internship programme."
       />
       
       <Container className="py-24 max-w-4xl">
@@ -50,14 +46,11 @@ export default function FAQPage() {
         </FadeIn>
 
         <FadeIn delay={0.2} className="mt-12 text-center">
-          <p className="text-slate-600 mb-6">Still have questions? We are here to help.</p>
-          <div className="flex justify-center gap-4">
-            <Link href="/contact" className="px-6 py-3 rounded-full bg-slate-900 text-white font-medium hover:bg-indigo-600 transition-colors">
-              Contact Support
-            </Link>
-            <Link href="/apply" className="px-6 py-3 rounded-full border border-slate-300 text-slate-900 font-medium hover:bg-slate-100 transition-colors">
-              Apply Now
-            </Link>
+          <p className="text-slate-600 mb-6 text-sm">
+            For specific queries not covered here, you may contact the programme office.
+          </p>
+          <div className="inline-block px-6 py-3 rounded-full bg-slate-200 text-slate-600 font-medium text-sm">
+            dcip@malappuram.info
           </div>
         </FadeIn>
       </Container>

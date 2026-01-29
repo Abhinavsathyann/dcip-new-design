@@ -5,121 +5,130 @@ import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { FadeIn, TiltCard, StaggerContainer } from "@/components/ui/Motion";
-import { Linkedin } from "lucide-react";
+import { GraduationCap, Briefcase } from "lucide-react";
 
-const ALUMNI = [
+const PARTICIPANTS = [
   {
     id: 1,
     name: "Adithya Narayan",
-    role: "Policy Researcher",
-    currentOrg: "Kerala State Planning Board",
+    background: "MA Economics",
+    institution: "University of Kerala",
     batch: "2022",
+    contribution: "District Planning Board Assistance",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 2,
     name: "Sneha P.",
-    role: "Program Manager",
-    currentOrg: "Kudumbashree Mission",
+    background: "MSW",
+    institution: "Tata Institute of Social Sciences",
     batch: "2023",
+    contribution: "Tribal Welfare Survey",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 3,
     name: "Rahul Vijay",
-    role: "Urban Planner",
-    currentOrg: "Smart City Project",
+    background: "B.Tech Civil",
+    institution: "NIT Calicut",
     batch: "2021",
+    contribution: "Disaster Management Mapping",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 4,
     name: "Anjali Krishna",
-    role: "Social Worker",
-    currentOrg: "UNICEF India",
+    background: "BA Sociology",
+    institution: "Mar Ivanios College",
     batch: "2022",
+    contribution: "Kudumbashree Coordination",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 5,
     name: "Mohammed Fayiz",
-    role: "Data Analyst",
-    currentOrg: "Information Kerala Mission",
+    background: "M.Sc Statistics",
+    institution: "CUSAT",
     batch: "2023",
+    contribution: "Data Analysis for Health Dept",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 6,
     name: "Lakshmi S.",
-    role: "Research Fellow",
-    currentOrg: "CDS Trivandrum",
+    background: "LLB",
+    institution: "Govt Law College",
     batch: "2021",
+    contribution: "Legal Cell Assistance",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1000&auto=format&fit=crop"
   }
 ];
 
-export default function AlumniPage() {
+export default function ParticipantsPage() {
   return (
     <main className="bg-slate-50 min-h-screen">
       <PageHeader 
-        title="Alumni Network" 
-        subtitle="Our former interns continue to contribute to governance, academia, and development sectors."
+        title="Participant Network" 
+        subtitle="A diverse community of students and graduates who have dedicated their time to public service."
       />
 
       <Container className="py-24">
-        {/* Network Value Prop */}
+        {/* Network Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24 border-b border-slate-200 pb-16">
           <div className="text-center">
-            <div className="text-4xl font-serif text-indigo-600 font-bold mb-2">150+</div>
-            <div className="text-sm font-bold uppercase tracking-widest text-slate-500">Active Members</div>
+            <div className="text-4xl font-serif text-slate-900 font-bold mb-2">150+</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Total Interns</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-serif text-indigo-600 font-bold mb-2">12</div>
-            <div className="text-sm font-bold uppercase tracking-widest text-slate-500">Partner Orgs</div>
+            <div className="text-4xl font-serif text-slate-900 font-bold mb-2">12</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Departments Served</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-serif text-indigo-600 font-bold mb-2">∞</div>
-            <div className="text-sm font-bold uppercase tracking-widest text-slate-500">Collaborations</div>
+            <div className="text-4xl font-serif text-slate-900 font-bold mb-2">5000+</div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Hours Contributed</div>
           </div>
         </div>
 
         {/* Directory */}
         <div className="mb-12">
-          <h2 className="text-3xl font-serif text-slate-900 mb-8">Alumni Directory</h2>
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="text-3xl font-serif text-slate-900">Recent Participants</h2>
+          </div>
+          
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ALUMNI.map((person) => (
-              <TiltCard key={person.id} className="group bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300">
-                <div className="flex items-center gap-6 mb-6">
-                  <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-indigo-500 transition-colors">
+            {PARTICIPANTS.map((person) => (
+              <TiltCard key={person.id} className="group bg-white rounded-xl p-6 shadow-sm border border-slate-100 hover:border-slate-300 transition-all duration-300">
+                <div className="flex items-center gap-5 mb-6">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden border border-slate-100 bg-slate-100">
                     <Image 
                       src={person.image} 
                       alt={person.name} 
                       fill 
-                      className="object-cover" 
+                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
                     />
                   </div>
                   <div>
-                    <h3 className="text-xl font-serif font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">{person.name}</h3>
-                    <p className="text-slate-500 text-sm">Batch of {person.batch}</p>
+                    <h3 className="text-lg font-serif font-bold text-slate-900">{person.name}</h3>
+                    <p className="text-slate-400 text-xs uppercase tracking-wider font-medium">Batch {person.batch}</p>
                   </div>
                 </div>
                 
-                <div className="space-y-3 mb-6">
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Current Role</div>
-                    <div className="text-slate-800 font-medium">{person.role}</div>
+                <div className="space-y-4 mb-4">
+                  <div className="flex gap-3">
+                    <GraduationCap className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs font-bold text-slate-500">Background</div>
+                      <div className="text-sm text-slate-800 font-medium">{person.background}</div>
+                      <div className="text-xs text-slate-500">{person.institution}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">Organization</div>
-                    <div className="text-slate-800 font-medium">{person.currentOrg}</div>
+                  <div className="flex gap-3">
+                    <Briefcase className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs font-bold text-slate-500">Key Contribution</div>
+                      <div className="text-sm text-slate-800">{person.contribution}</div>
+                    </div>
                   </div>
-                </div>
-
-                <div className="pt-6 border-t border-slate-50 flex justify-between items-center">
-                  <span className="text-xs font-medium text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">Alumni</span>
-                  <button className="text-slate-400 hover:text-[#0077b5] transition-colors">
-                    <Linkedin className="w-5 h-5" />
-                  </button>
                 </div>
               </TiltCard>
             ))}
