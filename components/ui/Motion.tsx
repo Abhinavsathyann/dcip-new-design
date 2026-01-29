@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, HTMLMotionProps, useSpring, useMotionValue, useInView, useAnimation } from "framer-motion";
+import React, { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, HTMLMotionProps, useSpring, useMotionValue, useInView } from "framer-motion";
 import { clsx } from "clsx";
 
 // 1. Reveal Text (Word by Word)
@@ -52,10 +52,10 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
       whileInView={priority ? undefined : "visible"}
       animate={priority ? "visible" : undefined}
       viewport={{ once: true }}
-      className={className}
+      className={clsx(className, "will-change-transform")}
     >
       {words.map((word, index) => (
-        <motion.span variants={child} key={index} className="mr-1.5 md:mr-2">
+        <motion.span variants={child} key={index} className="mr-1.5 md:mr-2 will-change-transform">
           {word}
         </motion.span>
       ))}
@@ -87,6 +87,7 @@ export const MaskText: React.FC<{ text: string | string[]; className?: string; d
             variants={animation}
             initial="initial"
             animate={isInView ? "enter" : ""}
+            className="will-change-transform"
           >
             {phrase}
           </motion.div>
@@ -114,7 +115,7 @@ export const Parallax: React.FC<ParallaxProps> = ({ children, offset = 50, class
 
   return (
     <div ref={ref} className={clsx("overflow-hidden", className)}>
-      <motion.div style={{ y }} className="w-full h-full">
+      <motion.div style={{ y }} className="w-full h-full will-change-transform">
         {children}
       </motion.div>
     </div>
@@ -141,7 +142,7 @@ export const FadeIn: React.FC<FadeInProps> = ({
       animate={priority ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: delay, ease: "easeOut" }}
-      className={className}
+      className={clsx(className, "will-change-transform")}
       {...props}
     >
       {children}
@@ -176,6 +177,7 @@ export const Magnetic: React.FC<{ children: React.ReactElement }> = ({ children 
       onMouseLeave={reset}
       animate={{ x, y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      className="will-change-transform"
     >
       {children}
     </motion.div>
@@ -242,7 +244,7 @@ export const TiltCard: React.FC<{ children: React.ReactNode; className?: string 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className={clsx("relative", className)}
+      className={clsx("relative will-change-transform", className)}
     >
       {children}
     </motion.div>
@@ -276,7 +278,7 @@ export const StaggerContainer: React.FC<{ children: React.ReactNode; className?:
       className={className}
     >
       {React.Children.map(children, (child) => (
-        <motion.div variants={item}>{child}</motion.div>
+        <motion.div variants={item} className="will-change-transform">{child}</motion.div>
       ))}
     </motion.div>
   );

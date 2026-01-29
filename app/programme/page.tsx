@@ -50,7 +50,7 @@ export default function ProgrammePage() {
             />
             <TimelineItem 
               step="05" 
-              title="Graduation" 
+              title="Certification" 
               desc="Presentation of final reports, certification ceremony, and alumni induction."
               side="left"
             />

@@ -63,7 +63,7 @@ export default function AlumniPage() {
     <main className="bg-slate-50 min-h-screen">
       <PageHeader 
         title="Alumni Network" 
-        subtitle="Our graduates are making waves in governance, academia, and development sectors across the globe."
+        subtitle="Our former interns continue to contribute to governance, academia, and development sectors."
       />
 
       <Container className="py-24">
