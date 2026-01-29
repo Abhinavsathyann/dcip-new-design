@@ -48,7 +48,8 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
     <motion.span
       style={{ display: "inline-flex", flexWrap: "wrap" }}
       variants={container}
-      initial="hidden"
+      // If priority is true, we start visible to prevent flash of invisible content or stuck states
+      initial={priority ? "visible" : "hidden"}
       whileInView={priority ? undefined : "visible"}
       animate={priority ? "visible" : undefined}
       viewport={{ once: true }}
@@ -103,7 +104,8 @@ export const FadeIn: React.FC<FadeInProps> = ({
 }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      // If priority is true, we render visible immediately
+      initial={priority ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       whileInView={priority ? undefined : { opacity: 1, y: 0 }}
       animate={priority ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true }}
