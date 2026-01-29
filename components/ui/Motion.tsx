@@ -9,9 +9,10 @@ interface TextRevealProps {
   text: string;
   className?: string;
   delay?: number;
+  priority?: boolean;
 }
 
-export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay = 0 }) => {
+export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay = 0, priority = false }) => {
   const words = text.split(" ");
 
   const container = {
@@ -48,8 +49,9 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
       style={{ display: "inline-flex", flexWrap: "wrap" }}
       variants={container}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-5%" }}
+      whileInView={priority ? undefined : "visible"}
+      animate={priority ? "visible" : undefined}
+      viewport={{ once: true }}
       className={className}
     >
       {words.map((word, index) => (
@@ -87,17 +89,24 @@ export const Parallax: React.FC<ParallaxProps> = ({ children, offset = 50, class
 };
 
 // 3. Fade In Up (General Purpose)
-export const FadeIn: React.FC<HTMLMotionProps<"div"> & { delay?: number }> = ({ 
+interface FadeInProps extends HTMLMotionProps<"div"> {
+  delay?: number;
+  priority?: boolean;
+}
+
+export const FadeIn: React.FC<FadeInProps> = ({ 
   children, 
   delay = 0, 
   className,
+  priority = false,
   ...props 
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      whileInView={priority ? undefined : { opacity: 1, y: 0 }}
+      animate={priority ? { opacity: 1, y: 0 } : undefined}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, delay: delay, ease: "easeOut" }}
       className={className}
       {...props}
@@ -114,7 +123,9 @@ export const Magnetic: React.FC<{ children: React.ReactElement }> = ({ children 
 
   const handleMouse = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current!.getBoundingClientRect();
+    if (!ref.current) return;
+    
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
     setPosition({ x: middleX * 0.1, y: middleY * 0.1 });

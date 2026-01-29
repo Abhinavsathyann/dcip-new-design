@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { TextReveal, FadeIn, Parallax, Magnetic } from "@/components/ui/Motion";
-import { ArrowRight, ChevronRight, PlayCircle, Layers, Globe, Users } from "lucide-react";
+import { ArrowRight, PlayCircle, Layers, Globe, Users } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Home() {
@@ -37,7 +37,7 @@ export default function Home() {
         {/* Content Layer */}
         <Container className="relative z-10 h-full flex flex-col justify-center pt-20">
           <div className="max-w-4xl">
-            <FadeIn delay={0.2}>
+            <FadeIn delay={0.2} priority>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm text-xs font-medium tracking-wider text-indigo-300 uppercase mb-8">
                 <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
                 Official Initiative of District Administration
@@ -46,21 +46,21 @@ export default function Home() {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white leading-[1.1] mb-8 text-balance">
               <span className="block mb-2 md:mb-4">
-                <TextReveal text="Governance" delay={0.1} className="inline-flex mr-4 md:mr-6" />
-                <TextReveal text="reimagined" delay={0.3} className="text-white/50 inline-flex" />
+                <TextReveal text="Governance" delay={0.1} className="inline-flex mr-4 md:mr-6" priority />
+                <TextReveal text="reimagined" delay={0.3} className="text-white/50 inline-flex" priority />
               </span>
               <span className="block">
-                <TextReveal text="by the youth." delay={0.5} className="inline-flex" />
+                <TextReveal text="by the youth." delay={0.5} className="inline-flex" priority />
               </span>
             </h1>
 
-            <FadeIn delay={0.8} className="max-w-xl">
+            <FadeIn delay={0.8} className="max-w-xl" priority>
               <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-10 text-balance">
                 DCIP Malappuram bridges the gap between academic theory and administrative reality, empowering the next generation of leaders through direct public service.
               </p>
             </FadeIn>
 
-            <FadeIn delay={1.0} className="flex flex-wrap gap-4">
+            <FadeIn delay={1.0} className="flex flex-wrap gap-4" priority>
               <Magnetic>
                 <Link href="/apply">
                   <button className="group relative px-8 py-4 bg-white text-slate-900 rounded-full font-semibold transition-all hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]">
