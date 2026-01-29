@@ -23,18 +23,21 @@ export const Hero = () => {
           className="absolute inset-0 will-change-transform"
         >
           <Image
-            src="https://images.unsplash.com/photo-1596386461350-326ea77c3797?q=80&w=2940&auto=format&fit=crop"
-            alt="Malappuram Landscape"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2600&auto=format&fit=crop"
+            alt="Modern Governance Architecture"
             fill
-            className="object-cover opacity-60 grayscale-[0.2]"
+            className="object-cover opacity-50 grayscale-[0.3]"
             priority
             sizes="100vw"
             quality={90}
           />
         </motion.div>
         {/* Cinematic Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-900/40 to-slate-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.8)_100%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/50 to-slate-950" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.9)_100%)]" />
+        
+        {/* Modern Animated Overlay Effect */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
       {/* Content Layer */}
