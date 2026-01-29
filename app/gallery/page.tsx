@@ -1,39 +1,28 @@
-import React from "react";
-import { Metadata } from "next";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { GalleryGrid } from "@/components/gallery/GalleryGrid";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { siteConfig } from "@/config/site";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Gallery & Media",
-  description: "Explore moments, field activities, and community engagements from the District Collector’s Internship Programme.",
-  openGraph: {
-    title: "Gallery | DCIP Malappuram",
-    description: "Moments and activities from the internship programme.",
-    url: `${siteConfig.url}/gallery`,
-    images: [
-      {
-        url: `${siteConfig.url}/og-gallery.jpg`, // Placeholder
-        width: 1200,
-        height: 630,
-        alt: "DCIP Malappuram Gallery",
-      },
-    ],
-  },
-};
+import React from "react";
+import { Container } from "@/components/layout/Container";
+import { FadeIn, TextReveal } from "@/components/ui/Motion";
+import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 
 export default function GalleryPage() {
   return (
-    <main>
-      <PageHeader 
-        title="Gallery & Media" 
-        subtitle="Moments and activities from the District Collector’s Internship Programme, Malappuram."
-      />
-      
-      <GalleryGrid />
-      
-      <Testimonials className="border-t border-slate-200" />
+    <main className="pt-32 pb-20 bg-slate-50 min-h-screen">
+      <Container>
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <div className="text-indigo-600 font-bold tracking-widest uppercase text-xs mb-4">Archives</div>
+          <h1 className="text-5xl md:text-7xl font-serif text-slate-900 mb-6">
+            <TextReveal text="Moments in Time" className="justify-center" />
+          </h1>
+          <p className="text-slate-500 text-lg">
+            A visual record of our interns in action, serving the district and its people.
+          </p>
+        </div>
+        
+        <FadeIn delay={0.3}>
+          <GalleryGrid />
+        </FadeIn>
+      </Container>
     </main>
   );
 }

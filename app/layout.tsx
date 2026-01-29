@@ -6,6 +6,7 @@ import { defaultMetadata } from "./metadata";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { siteConfig } from "@/config/site";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 
 // Configure Fonts
 const inter = Inter({ 
@@ -62,12 +63,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+      <body className="flex flex-col min-h-screen selection:bg-indigo-500/30 selection:text-indigo-900">
+        <SmoothScroll>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

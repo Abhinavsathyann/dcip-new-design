@@ -3,25 +3,72 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --foreground-rgb: 15, 23, 42;
+    --background-start-rgb: 248, 250, 252;
+    --background-end-rgb: 255, 255, 255;
+  }
+
   html {
-    @apply scroll-smooth;
+    /* Lenis handles smooth scroll */
+    scroll-behavior: auto; 
   }
   
   body {
-    @apply antialiased text-slate-700 bg-slate-50;
+    @apply antialiased text-slate-800 bg-slate-50;
+    overflow-x: hidden;
+  }
+
+  /* Grain Texture Overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-slate-900;
+    @apply font-serif text-slate-900 tracking-tight;
+  }
+  
+  /* Selection Color */
+  ::selection {
+    @apply bg-indigo-500/20 text-indigo-900;
   }
 }
 
-/* Custom Utilities for smooth gradients */
-.hero-gradient {
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0.4) 0%,
-    rgba(15, 23, 42, 0.7) 60%,
-    rgba(15, 23, 42, 0.9) 100%
-  );
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
 }

@@ -1,149 +1,58 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/layout/Container";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { Badge } from "@/components/ui/Badge";
-import { Calendar, ArrowRight, Filter } from "lucide-react";
-import { NEWS_ITEMS, NewsCategory } from "@/data/news";
-import { clsx } from "clsx";
-
-const CATEGORIES: ("All" | NewsCategory)[] = ["All", "Announcement", "Notice", "Update"];
+import { FadeIn } from "@/components/ui/Motion";
+import { NEWS_ITEMS } from "@/data/news";
+import { ArrowUpRight } from "lucide-react";
 
 export default function NewsPage() {
-  const [activeCategory, setActiveCategory] = useState<"All" | NewsCategory>("All");
-
-  const filteredNews = activeCategory === "All"
-    ? NEWS_ITEMS
-    : NEWS_ITEMS.filter((item) => item.category === activeCategory);
-
   return (
-    <main className="min-h-screen bg-slate-50 pb-20">
-      <PageHeader 
-        title="News & Updates" 
-        subtitle="Official announcements, notices, and updates from DCIP Malappuram."
-      />
-
-      <Container className="mt-12">
-        {/* Filters */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-          <div className="flex items-center gap-2 text-slate-500 font-medium">
-            <Filter className="w-5 h-5" />
-            <span>Filter by:</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={clsx(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border",
-                  activeCategory === cat
-                    ? "bg-slate-900 text-white border-slate-900 shadow-sm"
-                    : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
-                )}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+    <main className="pt-32 pb-20 bg-slate-50 min-h-screen">
+      <Container>
+        <div className="mb-20 border-b border-slate-200 pb-12">
+          <h1 className="text-6xl font-serif text-slate-900 mb-4">Official Updates</h1>
+          <p className="text-slate-500 text-lg max-w-xl">
+            Latest announcements, press releases, and circulars from the District Administration regarding DCIP.
+          </p>
         </div>
 
-        {/* News Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredNews.map((item) => (
-            <article 
-              key={item.id} 
-              className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow group flex flex-col h-full"
-            >
-              <div className="relative h-48 w-full bg-slate-100 overflow-hidden">
-                <Image
-                  src={item.coverImage}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute top-4 left-4">
-                  <Badge 
-                    variant={item.category === "Notice" ? "outline" : "default"}
-                    className={clsx(
-                      "shadow-sm",
-                      item.category === "Notice" ? "bg-white text-red-600 border-red-200" :
-                      item.category === "Announcement" ? "bg-indigo-600 text-white border-transparent" :
-                      "bg-slate-900 text-white border-transparent"
-                    )}
-                  >
-                    {item.category}
-                  </Badge>
-                </div>
-              </div>
-
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center gap-2 text-slate-500 text-xs font-medium mb-3">
-                  <Calendar className="w-4 h-4" />
-                  <time dateTime={item.publishedDate}>
-                    {new Date(item.publishedDate).toLocaleDateString("en-IN", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                </div>
-
-                <h3 className="text-xl font-bold font-serif text-slate-900 mb-3 leading-snug group-hover:text-indigo-700 transition-colors line-clamp-2">
-                  <Link href={`/news/${item.slug}`} className="focus:outline-none">
-                    <span className="absolute inset-0" aria-hidden="true" />
-                    {item.title}
-                  </Link>
-                </h3>
-
-                <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                  {item.summary}
-                </p>
-
-                <div className="mt-auto flex items-center text-indigo-600 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                  Read Full Article <ArrowRight className="w-4 h-4 ml-1" />
-                </div>
-              </div>
-            </article>
+        <div className="space-y-12">
+          {NEWS_ITEMS.map((item, idx) => (
+            <FadeIn key={item.id} delay={idx * 0.1}>
+              <Link href={`/news/${item.slug}`} className="group block">
+                <article className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-slate-100 pb-12">
+                   <div className="md:col-span-4 lg:col-span-3">
+                      <div className="aspect-[4/3] relative rounded-xl overflow-hidden bg-slate-200">
+                        <Image src={item.coverImage} alt={item.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                      </div>
+                   </div>
+                   <div className="md:col-span-8 lg:col-span-9">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="px-3 py-1 rounded-full border border-slate-200 text-xs font-medium uppercase tracking-wider text-slate-500">
+                          {item.category}
+                        </span>
+                        <span className="text-xs text-slate-400">
+                          {new Date(item.publishedDate).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <h2 className="text-3xl font-serif font-medium text-slate-900 mb-4 group-hover:text-indigo-700 transition-colors">
+                        {item.title}
+                      </h2>
+                      <p className="text-slate-600 line-clamp-2 max-w-3xl mb-6">
+                        {item.summary}
+                      </p>
+                      <div className="inline-flex items-center gap-2 text-indigo-600 font-bold text-sm tracking-wide group-hover:gap-3 transition-all">
+                        Read Full Article <ArrowUpRight className="w-4 h-4" />
+                      </div>
+                   </div>
+                </article>
+              </Link>
+            </FadeIn>
           ))}
         </div>
-
-        {/* Empty State */}
-        {filteredNews.length === 0 && (
-          <div className="text-center py-24 bg-white rounded-xl border border-slate-200 border-dashed">
-            <p className="text-slate-500 text-lg">No updates found in this category.</p>
-            <button 
-              onClick={() => setActiveCategory("All")}
-              className="mt-4 text-indigo-600 font-medium hover:underline"
-            >
-              View all news
-            </button>
-          </div>
-        )}
-
-        {/* Pagination Placeholder */}
-        {filteredNews.length > 0 && (
-          <div className="mt-16 flex justify-center">
-            <nav className="flex gap-2" aria-label="Pagination">
-              <button disabled className="px-4 py-2 text-sm text-slate-400 border border-slate-200 rounded-md cursor-not-allowed">
-                Previous
-              </button>
-              <button className="px-4 py-2 text-sm bg-indigo-600 text-white rounded-md">
-                1
-              </button>
-              <button className="px-4 py-2 text-sm text-slate-600 border border-slate-200 rounded-md hover:bg-slate-50">
-                2
-              </button>
-              <button className="px-4 py-2 text-sm text-slate-600 border border-slate-200 rounded-md hover:bg-slate-50">
-                Next
-              </button>
-            </nav>
-          </div>
-        )}
       </Container>
     </main>
   );
