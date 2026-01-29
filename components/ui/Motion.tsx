@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useInView, HTMLMotionProps } from "framer-motion";
+import { motion, useScroll, useTransform, HTMLMotionProps } from "framer-motion";
 import { clsx } from "clsx";
 
 // 1. Reveal Text (Word by Word)
@@ -13,8 +13,6 @@ interface TextRevealProps {
 
 export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay = 0 }) => {
   const words = text.split(" ");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   const container = {
     hidden: { opacity: 0 },
@@ -46,12 +44,12 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
   };
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ overflow: "hidden", display: "flex", flexWrap: "wrap" }}
+    <motion.span
+      style={{ display: "inline-flex", flexWrap: "wrap" }}
       variants={container}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-5%" }}
       className={className}
     >
       {words.map((word, index) => (
@@ -59,7 +57,7 @@ export const TextReveal: React.FC<TextRevealProps> = ({ text, className, delay =
           {word}
         </motion.span>
       ))}
-    </motion.div>
+    </motion.span>
   );
 };
 

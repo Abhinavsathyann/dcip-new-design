@@ -45,10 +45,13 @@ export default function Home() {
             </FadeIn>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white leading-[1.1] mb-8 text-balance">
-              <TextReveal text="Governance" delay={0.1} className="inline-block mr-4 md:mr-6" />
-              <TextReveal text="reimagined" delay={0.3} className="text-white/50 inline-block mr-4 md:mr-6" />
-              <br className="hidden md:block" />
-              <TextReveal text="by the youth." delay={0.5} className="inline-block" />
+              <span className="block mb-2 md:mb-4">
+                <TextReveal text="Governance" delay={0.1} className="inline-flex mr-4 md:mr-6" />
+                <TextReveal text="reimagined" delay={0.3} className="text-white/50 inline-flex" />
+              </span>
+              <span className="block">
+                <TextReveal text="by the youth." delay={0.5} className="inline-flex" />
+              </span>
             </h1>
 
             <FadeIn delay={0.8} className="max-w-xl">
