@@ -13,7 +13,7 @@ export default function NewsPage() {
     <main className="pt-32 pb-20 bg-slate-50 min-h-screen">
       <Container>
         <div className="mb-20 border-b border-slate-200 pb-12">
-          <h1 className="text-6xl font-serif text-slate-900 mb-4">Official Updates</h1>
+          <h1 className="text-4xl md:text-6xl font-serif text-slate-900 mb-4">Official Updates</h1>
           <p className="text-slate-500 text-lg max-w-xl">
             Latest announcements, press releases, and circulars from the District Administration regarding DCIP.
           </p>
@@ -38,7 +38,7 @@ export default function NewsPage() {
                           {new Date(item.publishedDate).toLocaleDateString()}
                         </span>
                       </div>
-                      <h2 className="text-3xl font-serif font-medium text-slate-900 mb-4 group-hover:text-indigo-700 transition-colors">
+                      <h2 className="text-2xl md:text-3xl font-serif font-medium text-slate-900 mb-4 group-hover:text-indigo-700 transition-colors">
                         {item.title}
                       </h2>
                       <p className="text-slate-600 line-clamp-2 max-w-3xl mb-6">

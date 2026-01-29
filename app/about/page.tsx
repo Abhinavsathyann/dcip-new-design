@@ -12,18 +12,18 @@ export default function AboutPage() {
       <Container>
         {/* Editorial Header */}
         <div className="max-w-6xl mx-auto mb-32">
-          <div className="flex flex-col md:flex-row gap-12 items-end border-b border-slate-200 pb-16">
-            <div className="flex-1">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-end border-b border-slate-200 pb-16">
+            <div className="flex-1 w-full">
               <span className="text-indigo-600 font-bold tracking-widest uppercase text-xs mb-6 block">Our Philosophy</span>
-              <h1 className="text-5xl md:text-7xl font-serif text-slate-900 leading-[1] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif text-slate-900 leading-[1] tracking-tight">
                 <TextReveal text="Service beyond" />
                 <span className="block text-slate-400 italic">
                   <TextReveal text="the classroom." delay={0.2} />
                 </span>
               </h1>
             </div>
-            <div className="md:w-1/3 pb-2">
-              <p className="text-lg text-slate-600 leading-relaxed font-light">
+            <div className="w-full md:w-1/3 pb-2">
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed font-light">
                 DCIP is not an employment scheme. It is an invitation to civic duty—offering a rare window into the machinery of district administration.
               </p>
             </div>
@@ -32,7 +32,7 @@ export default function AboutPage() {
 
         {/* Visual Storytelling Block */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-32 items-center">
-           <div className="md:col-span-8 relative h-[600px] rounded-sm overflow-hidden">
+           <div className="md:col-span-8 relative h-[400px] md:h-[600px] rounded-sm overflow-hidden">
               <Parallax offset={40} className="h-[120%]">
                  <Image 
                    src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?q=80&w=2800&auto=format&fit=crop"
@@ -41,8 +41,8 @@ export default function AboutPage() {
                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                  />
               </Parallax>
-              <div className="absolute bottom-0 left-0 p-8 bg-gradient-to-t from-black/80 to-transparent w-full">
-                <div className="text-white font-serif italic text-2xl">"Governance requires perspective."</div>
+              <div className="absolute bottom-0 left-0 p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent w-full">
+                <div className="text-white font-serif italic text-xl md:text-2xl">"Governance requires perspective."</div>
               </div>
            </div>
            <div className="md:col-span-4 space-y-12 pl-0 md:pl-8">
@@ -73,7 +73,7 @@ export default function AboutPage() {
               An Initiative of the <br/>District Administration
             </h2>
             <div className="w-20 h-1 bg-indigo-500 mb-8" />
-            <p className="text-xl text-slate-300 font-light leading-relaxed mb-12">
+            <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed mb-12">
               Conceived to bridge the gap between youth energy and administrative experience, DCIP allows the Collectorate to tap into fresh academic perspectives while molding the next generation of socially responsible citizens.
             </p>
             

@@ -14,10 +14,10 @@ export default function ProgrammePage() {
           <div className="inline-block px-4 py-1 rounded-full border border-slate-200 bg-white text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-6">
             Internship Structure
           </div>
-          <h1 className="text-5xl md:text-7xl font-serif text-slate-900 mb-8 leading-[0.9]">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif text-slate-900 mb-8 leading-[0.9]">
             <TextReveal text="The Roadmap of Service" className="justify-center" />
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto font-light">
+          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto font-light">
             A rigorous 4-month voluntary engagement designed to provide exposure to the functioning of the District Administration.
           </p>
         </div>
@@ -113,9 +113,9 @@ function TimelineItem({ step, title, desc, side }: { step: string, title: string
       <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-4 border-slate-900 rounded-full z-10 shadow-lg" />
       
       {/* Content */}
-      <FadeIn className={`ml-16 md:ml-0 md:w-[45%] p-8 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-slate-300 transition-colors`}>
-        <div className="text-5xl font-serif text-slate-100 font-bold mb-4 absolute top-4 right-6 pointer-events-none select-none">{step}</div>
-        <h3 className="text-2xl font-serif font-bold text-slate-900 mb-3 relative z-10">{title}</h3>
+      <FadeIn className={`ml-16 md:ml-0 md:w-[45%] p-6 md:p-8 bg-white rounded-xl shadow-sm border border-slate-100 hover:border-slate-300 transition-colors`}>
+        <div className="text-3xl md:text-5xl font-serif text-slate-100 font-bold mb-4 absolute top-4 right-6 pointer-events-none select-none">{step}</div>
+        <h3 className="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-3 relative z-10">{title}</h3>
         <p className="text-slate-600 leading-relaxed text-sm relative z-10">{desc}</p>
       </FadeIn>
       

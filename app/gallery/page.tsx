@@ -11,7 +11,7 @@ export default function GalleryPage() {
       <Container>
         <div className="text-center mb-20 max-w-3xl mx-auto">
           <div className="text-indigo-600 font-bold tracking-widest uppercase text-xs mb-4">Archives</div>
-          <h1 className="text-5xl md:text-7xl font-serif text-slate-900 mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 mb-6">
             <TextReveal text="Moments in Time" className="justify-center" />
           </h1>
           <p className="text-slate-500 text-lg">
