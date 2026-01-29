@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { X, ZoomIn, ChevronRight, ImageIcon } from "lucide-react";
+import { X, ZoomIn, ImageIcon } from "lucide-react";
 import { Container } from "@/components/layout/Container";
-import { clsx } from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 
 // --- Types ---
@@ -44,7 +43,7 @@ const GALLERY_ITEMS: GalleryItemData[] = [
     src: "https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?auto=format&fit=crop&q=80&w=1000",
     title: "Public Outreach",
     category: "Community",
-    description: "engaging with citizens at the town hall meeting.",
+    description: "Engaging with citizens at the town hall meeting.",
   },
   {
     id: 5,
@@ -83,56 +82,60 @@ interface GalleryItemProps {
   onClick: (item: GalleryItemData) => void;
 }
 
-const GalleryItem = ({ 
-  item, 
-  onClick 
-}: GalleryItemProps) => {
+const GalleryItem: React.FC<GalleryItemProps> = ({ item, onClick }) => {
   return (
-    <motion.button
-      layoutId={`gallery-item-${item.id}`}
-      onClick={() => onClick(item)}
-      className="group relative block w-full aspect-[4/5] overflow-hidden rounded-xl bg-slate-200 focus:outline-none focus:ring-4 focus:ring-indigo-500/50"
-      aria-label={`View image: ${item.title}`}
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.2 }}
+    <motion.div
+      layoutId={`gallery-item-container-${item.id}`}
+      className="relative w-full h-full"
     >
-      <Image
-        src={item.src}
-        alt={item.title}
-        fill
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
-        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-      />
-      
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
-        <span className="inline-block px-2 py-1 mb-2 text-[10px] font-bold uppercase tracking-widest text-indigo-200 bg-indigo-900/50 backdrop-blur-sm rounded-md w-fit">
-          {item.category}
-        </span>
-        <h3 className="text-white font-serif font-bold text-lg leading-tight">
-          {item.title}
-        </h3>
-        <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-300">
-           <p className="text-slate-300 text-xs mt-1 line-clamp-2">{item.description}</p>
+      <motion.button
+        layoutId={`gallery-item-${item.id}`}
+        onClick={() => onClick(item)}
+        className="group relative block w-full aspect-[4/5] overflow-hidden rounded-xl bg-slate-200 focus:outline-none focus:ring-4 focus:ring-indigo-500/50"
+        aria-label={`View image: ${item.title}`}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.2 }}
+      >
+        <Image
+          src={item.src}
+          alt={item.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+        />
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-left">
+          <span className="inline-block px-2 py-1 mb-2 text-[10px] font-bold uppercase tracking-widest text-indigo-200 bg-indigo-900/50 backdrop-blur-sm rounded-md w-fit">
+            {item.category}
+          </span>
+          <h3 className="text-white font-serif font-bold text-lg leading-tight">
+            {item.title}
+          </h3>
+          <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-300">
+             <p className="text-slate-300 text-xs mt-1 line-clamp-2">{item.description}</p>
+          </div>
         </div>
-      </div>
-      
-      {/* Icon hint */}
-      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="bg-white/20 backdrop-blur-md p-1.5 rounded-full text-white">
-          <ZoomIn className="w-4 h-4" />
+        
+        {/* Icon hint */}
+        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="bg-white/20 backdrop-blur-md p-1.5 rounded-full text-white">
+            <ZoomIn className="w-4 h-4" />
+          </div>
         </div>
-      </div>
-    </motion.button>
+      </motion.button>
+    </motion.div>
   );
 };
 
-const ImageModal = ({ 
+interface ImageModalProps {
+  item: GalleryItemData;
+  onClose: () => void;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({ 
   item, 
   onClose 
-}: { 
-  item: GalleryItemData; 
-  onClose: () => void;
 }) => {
   // Lock body scroll
   useEffect(() => {
@@ -162,7 +165,7 @@ const ImageModal = ({
       <motion.div
         layoutId={`gallery-item-${item.id}`}
         className="relative w-full max-w-5xl max-h-[90vh] flex flex-col items-center justify-center"
-        onClick={(e) => e.stopPropagation()} // Prevent close on image click
+        onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
@@ -197,8 +200,6 @@ const ImageModal = ({
   );
 };
 
-// --- Main Section Component ---
-
 export const GallerySection = () => {
   const [selectedItem, setSelectedItem] = useState<GalleryItemData | null>(null);
 
@@ -216,7 +217,7 @@ export const GallerySection = () => {
           <div className="w-24 h-1 bg-indigo-600 rounded-full mx-auto mt-8" />
         </div>
 
-        {/* Grid - 2 Cols Mobile, 3 Tablet, 4 Desktop */}
+        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 lg:gap-6">
           {GALLERY_ITEMS.map((item) => (
             <GalleryItem 
@@ -227,7 +228,7 @@ export const GallerySection = () => {
           ))}
         </div>
 
-        {/* Empty State / Loading would go here */}
+        {/* Empty State */}
         {GALLERY_ITEMS.length === 0 && (
           <div className="text-center py-20 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
             <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
@@ -251,5 +252,4 @@ export const GallerySection = () => {
   );
 };
 
-// Default export for cleaner imports if needed
 export default GallerySection;
