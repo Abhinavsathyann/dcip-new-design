@@ -1,3 +1,4 @@
+
 export const siteConfig = {
   name: "DCIP Malappuram",
   description: "District Collector’s Internship Programme – Malappuram. An official initiative of the District Administration.",
@@ -12,6 +13,7 @@ export const siteConfig = {
     { name: "Mission", href: "/about" },
     { name: "Programme", href: "/programme" },
     { name: "Impact", href: "/impact" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Participants", href: "/alumni" },
     { name: "Updates", href: "/news" },
     { name: "Information", href: "/faq" },
