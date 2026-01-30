@@ -48,7 +48,7 @@ export const Hero = () => {
           <FadeIn delay={0.2} priority className="flex justify-center mb-12">
             <div className="inline-flex items-center gap-4 px-4 py-2 sm:px-6 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-[10px] sm:text-xs font-bold tracking-[0.25em] text-white uppercase shadow-2xl whitespace-nowrap">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
-              District Administration Malappuram
+              Govt. of Kerala Initiative
             </div>
           </FadeIn>
 
