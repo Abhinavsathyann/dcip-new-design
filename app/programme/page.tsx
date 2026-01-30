@@ -34,16 +34,16 @@ export default function ProgrammePage() {
                className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-indigo-300 mb-8"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-              Programme Structure
+              Legacy & Milestones
             </motion.div>
             
             <h1 className="text-5xl sm:text-6xl md:text-8xl font-serif font-medium leading-[0.9] tracking-tight mb-8">
-              The <span className="text-indigo-400 italic">Roadmap</span> <br/>
-              of Service.
+              History of <br/>
+              <span className="text-indigo-400 italic">DCIP</span>.
             </h1>
             
             <p className="text-lg md:text-xl text-slate-300 max-w-xl font-light leading-relaxed border-l border-white/20 pl-6">
-              A rigorous 4-month voluntary engagement designed to deconstruct governance and reconstruct perspective.
+              Founded in 2016, DCIP stands as a testament to youth-driven governance. A journey marked by achievement, rigorous fieldwork, and transformative administrative interventions.
             </p>
           </div>
         </Container>
