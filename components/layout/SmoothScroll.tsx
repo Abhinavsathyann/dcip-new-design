@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect } from "react";
@@ -30,9 +31,27 @@ export default function SmoothScroll({ children }: { children?: React.ReactNode 
 
     initLenis();
 
+    // --- Content Protection: Lock Images ---
+    const protectImages = (e: Event) => {
+      const target = e.target as HTMLElement;
+      // Check if target is an image
+      if (target.tagName === 'IMG') {
+        e.preventDefault();
+      }
+    };
+
+    // 1. Prevent Dragging
+    document.addEventListener('dragstart', protectImages);
+    
+    // 2. Prevent Right-Click (Context Menu) on Images to hide URL
+    document.addEventListener('contextmenu', protectImages);
+
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       if (lenis) lenis.destroy();
+      
+      document.removeEventListener('dragstart', protectImages);
+      document.removeEventListener('contextmenu', protectImages);
     };
   }, []);
 
