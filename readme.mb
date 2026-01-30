@@ -1,0 +1,4 @@
+git status        # see changed files
+git add .
+git commit -m "Updated homepage design"
+git push origin main
