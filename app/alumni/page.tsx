@@ -105,39 +105,39 @@ export default function AlumniPage() {
         subtitle="Former interns who contributed to district administration initiatives."
       />
 
-      <Container className="py-24">
+      <Container className="py-16 md:py-24">
         {/* Network Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 border-b border-slate-200 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16 md:mb-20 border-b border-slate-200 pb-12 md:pb-16">
           <div className="text-center">
-            <div className="text-4xl font-serif text-slate-900 font-bold mb-2">150+</div>
+            <div className="text-3xl md:text-4xl font-serif text-slate-900 font-bold mb-2">150+</div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Total Interns</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-serif text-slate-900 font-bold mb-2">12</div>
+            <div className="text-3xl md:text-4xl font-serif text-slate-900 font-bold mb-2">12</div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Departments Served</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-serif text-slate-900 font-bold mb-2">5000+</div>
+            <div className="text-3xl md:text-4xl font-serif text-slate-900 font-bold mb-2">5000+</div>
             <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Hours Contributed</div>
           </div>
         </div>
 
         {/* Batch Selection Controls */}
-        <FadeIn className="mb-16">
+        <FadeIn className="mb-12 md:mb-16">
           <div className="flex flex-col items-center">
             <div className="inline-block px-4 py-1 rounded-full border border-slate-200 bg-white text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6">
               Select Cohort
             </div>
             
             {/* Scrollable Container for Mobile */}
-            <div className="w-full overflow-x-auto pb-4 -mx-4 px-4 md:overflow-visible md:pb-0 md:px-0 flex justify-start md:justify-center">
+            <div className="w-full overflow-x-auto pb-4 -mx-4 px-4 md:overflow-visible md:pb-0 md:px-0 flex justify-start md:justify-center no-scrollbar">
               <div className="flex space-x-2 md:space-x-3 min-w-max">
                 {BATCH_NAMES.map((batch) => (
                   <button
                     key={batch}
                     onClick={() => setActiveBatch(batch)}
                     className={clsx(
-                      "px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                      "px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-bold tracking-wide transition-all duration-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
                       activeBatch === batch 
                         ? "bg-slate-900 text-white shadow-lg transform scale-105" 
                         : "bg-white text-slate-500 border border-slate-200 hover:border-indigo-200 hover:text-indigo-600 hover:shadow-sm"
@@ -156,12 +156,12 @@ export default function AlumniPage() {
         <div className="min-h-[400px]">
           <StaggerContainer 
             key={activeBatch} // Forces re-mount animation on batch switch
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12 md:gap-x-8 md:gap-y-16"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-16"
           >
             {ALUMNI_DATA[activeBatch].map((person) => (
               <div key={person.id} className="group flex flex-col items-center">
                 {/* Photo */}
-                <div className="relative w-32 h-32 md:w-44 md:h-44 rounded-full overflow-hidden mb-6 bg-slate-100 border-4 border-white shadow-sm group-hover:shadow-xl group-hover:scale-105 transition-all duration-500 ease-out">
+                <div className="relative w-28 h-28 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden mb-4 md:mb-6 bg-slate-100 border-4 border-white shadow-sm group-hover:shadow-xl group-hover:scale-105 transition-all duration-500 ease-out">
                   <Image 
                     src={person.image} 
                     alt={person.name} 
@@ -172,11 +172,11 @@ export default function AlumniPage() {
                 </div>
                 
                 {/* Name & Role */}
-                <div className="text-center px-2">
-                  <h3 className="text-lg md:text-xl font-serif font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+                <div className="text-center px-1">
+                  <h3 className="text-base md:text-lg lg:text-xl font-serif font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
                     {person.name}
                   </h3>
-                  <p className="text-xs font-medium uppercase tracking-widest text-slate-400 mt-1">{person.role}</p>
+                  <p className="text-[10px] md:text-xs font-medium uppercase tracking-widest text-slate-400 mt-1">{person.role}</p>
                 </div>
               </div>
             ))}

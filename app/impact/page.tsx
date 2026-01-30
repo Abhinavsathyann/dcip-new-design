@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -15,9 +16,9 @@ export default function ImpactPage() {
         subtitle="Tangible outcomes driven by youth intervention in local governance."
       />
 
-      <Container className="py-24">
+      <Container className="py-16 md:py-24">
         {/* Key Metrics - Governance Focused */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 md:mb-32">
           <MetricCard 
             icon={<CheckCircle2 className="w-6 h-6" />}
             value={45}
@@ -47,18 +48,18 @@ export default function ImpactPage() {
         </div>
 
         {/* Featured Case Study - Editorial Layout */}
-        <div className="mb-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div className="mb-20 md:mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center">
              <div className="order-2 lg:order-1">
                <FadeIn>
-                 <div className="flex items-center gap-2 mb-6">
+                 <div className="flex items-center gap-2 mb-4 md:mb-6">
                    <div className="w-2 h-2 rounded-full bg-indigo-600" />
                    <div className="text-slate-500 font-bold uppercase tracking-widest text-xs">Case Study</div>
                  </div>
-                 <h2 className="text-3xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
+                 <h2 className="text-3xl md:text-5xl font-serif text-slate-900 mb-4 md:mb-6 leading-tight">
                    Mission Clean Malappuram
                  </h2>
-                 <p className="text-slate-600 text-lg leading-relaxed mb-8">
+                 <p className="text-slate-600 text-base md:text-lg leading-relaxed mb-6 md:mb-8">
                    DCIP interns spearheaded a district-wide waste management audit. By mapping over 200 illegal dumping spots and coordinating with local bodies, they helped institute a new rigorous collection protocol.
                  </p>
                  <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm space-y-4">
@@ -68,7 +69,7 @@ export default function ImpactPage() {
                  </div>
                </FadeIn>
              </div>
-             <div className="order-1 lg:order-2 h-[400px] md:h-[600px] relative rounded-sm overflow-hidden shadow-2xl">
+             <div className="order-1 lg:order-2 h-[300px] md:h-[600px] relative rounded-sm overflow-hidden shadow-2xl">
                <Parallax offset={30} className="h-[120%]">
                  <Image 
                    src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2000&auto=format&fit=crop"
@@ -83,7 +84,7 @@ export default function ImpactPage() {
         </div>
 
         {/* Areas of Intervention - Visual Grid */}
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <h2 className="text-3xl font-serif text-slate-900 mb-8 border-b border-slate-200 pb-4 inline-block">Focus Areas</h2>
         </div>
 
@@ -112,7 +113,7 @@ export default function ImpactPage() {
 
 function MetricCard({ icon, value, label, desc, suffix = "" }: any) {
   return (
-    <FadeIn className="bg-white p-8 rounded-xl border border-slate-100 shadow-sm hover:border-slate-300 transition-colors">
+    <FadeIn className="bg-white p-6 md:p-8 rounded-xl border border-slate-100 shadow-sm hover:border-slate-300 transition-colors">
       <div className="w-10 h-10 bg-slate-100 text-slate-700 rounded-lg flex items-center justify-center mb-6">
         {icon}
       </div>
@@ -138,7 +139,7 @@ function ResultRow({ text }: { text: string }) {
 
 function AreaCard({ title, desc, image }: any) {
   return (
-    <div className="group relative aspect-[3/4] rounded-sm overflow-hidden cursor-pointer bg-slate-900">
+    <div className="group relative aspect-[3/2] md:aspect-[3/4] rounded-sm overflow-hidden cursor-pointer bg-slate-900">
       <Image 
         src={image} 
         alt={title} 
@@ -146,8 +147,8 @@ function AreaCard({ title, desc, image }: any) {
         className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-60" 
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 p-8 transform transition-transform duration-500">
-        <h3 className="text-2xl font-serif font-bold text-white mb-3 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">{title}</h3>
+      <div className="absolute bottom-0 left-0 p-6 md:p-8 transform transition-transform duration-500">
+        <h3 className="text-xl md:text-2xl font-serif font-bold text-white mb-2 md:mb-3 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">{title}</h3>
         <p className="text-slate-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
           {desc}
         </p>

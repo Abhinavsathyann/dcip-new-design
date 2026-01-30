@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -8,13 +9,13 @@ import { Target, Compass, Users, Building2 } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <main className="pt-32 pb-20 bg-slate-50">
+    <main className="pt-24 md:pt-32 pb-16 md:pb-20 bg-slate-50">
       <Container>
         {/* Editorial Header */}
-        <div className="max-w-6xl mx-auto mb-32">
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-end border-b border-slate-200 pb-16">
+        <div className="max-w-6xl mx-auto mb-20 md:mb-32">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-end border-b border-slate-200 pb-12 md:pb-16">
             <div className="flex-1 w-full">
-              <span className="text-indigo-600 font-bold tracking-widest uppercase text-xs mb-6 block">Our Philosophy</span>
+              <span className="text-indigo-600 font-bold tracking-widest uppercase text-xs mb-4 md:mb-6 block">Our Philosophy</span>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif text-slate-900 leading-[1] tracking-tight">
                 <TextReveal text="Service beyond" />
                 <span className="block text-slate-400 italic">
@@ -31,8 +32,8 @@ export default function AboutPage() {
         </div>
 
         {/* Visual Storytelling Block */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-32 items-center">
-           <div className="md:col-span-8 relative h-[400px] md:h-[600px] rounded-sm overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-20 md:mb-32 items-center">
+           <div className="md:col-span-8 relative h-[300px] md:h-[600px] rounded-sm overflow-hidden">
               <Parallax offset={40} className="h-[120%]">
                  <Image 
                    src="https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?q=80&w=2800&auto=format&fit=crop"
@@ -45,7 +46,7 @@ export default function AboutPage() {
                 <div className="text-white font-serif italic text-xl md:text-2xl">"Governance requires perspective."</div>
               </div>
            </div>
-           <div className="md:col-span-4 space-y-12 pl-0 md:pl-8">
+           <div className="md:col-span-4 space-y-8 md:space-y-12 pl-0 md:pl-8">
               <ValueProp 
                 icon={<Target className="w-6 h-6" />} 
                 title="Structured Exposure" 
@@ -66,13 +67,13 @@ export default function AboutPage() {
 
         {/* Leadership Context */}
         <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-indigo-900/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           
           <div className="relative z-10 max-w-3xl">
-            <h2 className="text-3xl md:text-5xl font-serif mb-8 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-serif mb-6 md:mb-8 leading-tight">
               An Initiative of the <br/>District Administration
             </h2>
-            <div className="w-20 h-1 bg-indigo-500 mb-8" />
+            <div className="w-16 md:w-20 h-1 bg-indigo-500 mb-6 md:mb-8" />
             <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed mb-12">
               Conceived to bridge the gap between youth energy and administrative experience, DCIP allows the Collectorate to tap into fresh academic perspectives while molding the next generation of socially responsible citizens.
             </p>
@@ -108,7 +109,7 @@ function ValueProp({ icon, title, desc }: { icon: React.ReactNode, title: string
 function Stat({ number, label }: { number: string, label: string }) {
   return (
     <div>
-      <div className="text-3xl font-serif font-bold text-white mb-1">{number}</div>
+      <div className="text-2xl md:text-3xl font-serif font-bold text-white mb-1">{number}</div>
       <div className="text-[10px] uppercase tracking-widest text-slate-400">{label}</div>
     </div>
   );
