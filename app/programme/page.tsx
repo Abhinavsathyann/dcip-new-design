@@ -49,49 +49,49 @@ export default function ProgrammePage() {
         </Container>
       </section>
 
-      {/* Modern Roadmap Section */}
+      {/* History Timeline Section */}
       <section className="py-16 md:py-32 relative" ref={containerRef}>
         <Container>
            <div className="flex flex-col md:flex-row gap-12 md:gap-16 lg:gap-24">
               {/* Sticky Title */}
               <div className="md:w-1/3">
                  <div className="md:sticky md:top-32">
-                    <h2 className="text-3xl font-serif font-bold text-slate-900 mb-4 md:mb-6">Four Months.<br/>Lifetime Impact.</h2>
+                    <h2 className="text-3xl font-serif font-bold text-slate-900 mb-4 md:mb-6">Milestones of<br/>Impact.</h2>
                     <p className="text-slate-500 mb-6 md:mb-8 text-base md:text-lg leading-relaxed">
-                      The programme is structured to gradually immerse interns into the administrative machinery, moving from observation to intervention.
+                      Tracing the evolution of DCIP from a visionary experiment to a pillar of district administration.
                     </p>
                     <div className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-indigo-600">
                       <ArrowDown className="w-4 h-4 animate-bounce" />
-                      Scroll to explore
+                      Scroll to explore history
                     </div>
                  </div>
               </div>
 
-              {/* Steps List */}
+              {/* Historical Milestones List */}
               <div className="md:w-2/3 space-y-12 md:space-y-32">
                  <RoadmapStep 
-                   number="01"
-                   title="Induction & Orientation"
-                   duration="Week 1"
-                   description="Comprehensive workshop covering administrative hierarchy, office procedures, file management, and code of conduct. Interns decode the 'Iron Frame' of bureaucracy."
+                   number="2016"
+                   title="Foundation"
+                   duration="Inception"
+                   description="DCIP was launched by the District Administration to bridge the gap between academic theory and administrative reality. It began with a small cohort of 20 students aimed at assisting in file digitization."
                  />
                  <RoadmapStep 
-                   number="02"
-                   title="Department Attachment"
-                   duration="Week 2-5"
-                   description="Placement in specific sections (Development, Land Revenue, Disaster Management). Shadowing officials to understand the anatomy of decision making and public dealing."
+                   number="2018"
+                   title="State Recognition"
+                   duration="Award"
+                   description="Received the 'Chief Minister's Award for Innovation in Public Policy'. The programme expanded to cover 10 major departments including Health, Education, and Revenue."
                  />
                  <RoadmapStep 
-                   number="03"
-                   title="Field Immersion"
-                   duration="Week 6-12"
-                   description="Moving beyond files. Active participation in surveys, site inspections, and beneficiary interactions. Ground-truthing government data in real-time."
+                   number="2020"
+                   title="Crisis Response"
+                   duration="COVID-19"
+                   description="Interns formed the backbone of the District War Room. From managing oxygen supply logistics to coordinating volunteer networks, DCIP proved its worth in crisis management."
                  />
                  <RoadmapStep 
-                   number="04"
-                   title="Policy Notes & Review"
-                   duration="Week 13-16"
-                   description="Consolidating findings into actionable reports. Presentation to the District Collector. The transition from an observer to a contributor is complete."
+                   number="2023"
+                   title="National Best Practice"
+                   duration="Achievement"
+                   description="Cited by NITI Aayog as a replicable model for youth engagement in governance. The programme's alumni network crossed 500 members, creating a global community of civil service aspirants."
                  />
               </div>
            </div>
