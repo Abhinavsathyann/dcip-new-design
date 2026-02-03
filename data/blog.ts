@@ -1,17 +1,54 @@
 
+// =================================================================================================
+//  BLOG CONTENT MANAGEMENT
+// =================================================================================================
+//  HOW TO ADD A NEW POST:
+//  1. Copy the "TEMPLATE" object below.
+//  2. Paste it at the TOP of the 'BLOG_POSTS' array (immediately after the opening '[').
+//  3. Update the fields (title, content, image, etc.).
+//
+//  IMPORTANT RULES:
+//  - The First 3 Posts in this list will appear on the Home Page "Latest Insights" section.
+//  - To make a post the BIG Hero image on the Blog Page, set 'featured: true'.
+//  - 'id' must be unique (this is the URL, e.g., /blog/my-new-post).
+//  - 'content' is a list of paragraphs. Each new paragraph is a new string in the [ ] list.
+// =================================================================================================
+
 export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string[];
-  date: string;
-  category: string;
-  author: string;
-  image: string;
-  featured?: boolean;
+  id: string;        // URL slug (e.g., 'field-visit-2024')
+  title: string;     // Main Headline
+  excerpt: string;   // Short summary for the card view
+  content: string[]; // Article body (each string is a paragraph)
+  date: string;      // e.g., "May 20, 2024"
+  category: string;  // e.g., "Field Work", "Update", "Story"
+  author: string;    // Author Name
+  image: string;     // Image URL (Unsplash or /public/images/...)
+  featured?: boolean;// Set to true for the Main Highlight post
 }
 
 export const BLOG_POSTS: BlogPost[] = [
+
+  // --- ⬇️ PASTE NEW POSTS HERE (AT THE TOP) ⬇️ ---
+
+  {
+    id: "empowering-rural-youth",
+    title: "Empowering Rural Youth: The 2024 Vision",
+    excerpt: "A look into how the new cohort is focusing on skill development in the district's most remote panchayats.",
+    content: [
+      "The definition of governance is changing. It is no longer just about maintaining law and order; it is about enabling potential. This month, the DCIP team launched a targeted initiative focused on the district's rural youth.",
+      "Our preliminary surveys in the Nilambur region showed a significant gap between educational qualifications and employability skills. While literacy rates are high, practical exposure to digital tools and professional etiquette was lacking.",
+      "To address this, interns have partnered with the District Skill Development Centre to organize weekend bootcamps. These aren't typical classrooms. We simulate office environments, conduct mock interviews, and provide hands-on training with e-governance portals.",
+      "The response has been overwhelming. Seeing a 20-year-old from a tribal hamlet confidently navigate a digital grievance portal is the kind of tangible impact DCIP strives for. This is just the beginning of a year-long roadmap to bridge the rural-urban skill divide."
+    ],
+    date: "May 15, 2024",
+    category: "Impact Story",
+    author: "Nandini S.",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2000&auto=format&fit=crop",
+    featured: false
+  },
+
+  // --- ⬆️ END OF NEW POSTS ⬆️ ---
+
   {
     id: "reimagining-public-spaces",
     title: "Reimagining Public Spaces: The Malappuram Urban Project",
