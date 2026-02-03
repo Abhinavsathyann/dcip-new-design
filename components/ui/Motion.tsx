@@ -126,6 +126,8 @@ export const Parallax: React.FC<ParallaxProps> = ({ children, offset = 50, class
 interface FadeInProps extends HTMLMotionProps<"div"> {
   delay?: number;
   priority?: boolean;
+  children?: React.ReactNode;
+  className?: string;
 }
 
 export const FadeIn: React.FC<FadeInProps> = ({ 
