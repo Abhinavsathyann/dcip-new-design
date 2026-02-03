@@ -14,8 +14,17 @@ interface BlogPostProps {
   params: { id: string };
 }
 
+// Generate static params for all blog posts to ensure they are pre-rendered
+export async function generateStaticParams() {
+  return BLOG_POSTS.map((post) => ({
+    id: post.id,
+  }));
+}
+
 export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
-  const post = BLOG_POSTS.find((p) => p.id === params.id);
+  // Decode ID to handle spaces or special characters (e.g., %20 -> space)
+  const decodedId = decodeURIComponent(params.id);
+  const post = BLOG_POSTS.find((p) => p.id === decodedId);
 
   if (!post) {
     return {
@@ -45,7 +54,9 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
 }
 
 export default function BlogPostPage({ params }: BlogPostProps) {
-  const post = BLOG_POSTS.find((p) => p.id === params.id);
+  // Decode ID to handle spaces or special characters
+  const decodedId = decodeURIComponent(params.id);
+  const post = BLOG_POSTS.find((p) => p.id === decodedId);
 
   if (!post) {
     notFound();
